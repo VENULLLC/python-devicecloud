@@ -280,6 +280,10 @@ class DeviceCoreAPI(APIBase):
                 raise ValueError("mac_address, device_id, or imei must be provided for device %r" % d)
 
             # Write optional elements if present.
+            install_code = d.get("install_code")
+
+            if install_code:
+                maybe_write_element("devInstallCode", install_code)
             maybe_write_element("grpPath", d.get("group_path"))
             maybe_write_element("dpUserMetaData", d.get("metadata"))
             maybe_write_element("dpTags", d.get("tags"))
